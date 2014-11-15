@@ -84,7 +84,7 @@ Enter your address group names and descriptions into the group_list.conf file.  
 
 Add one address group per line in the format *address_group_name = Description*.
 
-An example entry:
+######An example entry:
 vpn_usa = USA VPN
 
 #####ip_list.conf
@@ -94,7 +94,7 @@ Enter the IP addresses and device names for the device's you'd like to use with 
 
 Add one IP address per line in the format *IP_address = Device Description*.
 
-An example entry:
+######An example entry:
 192.168.1.75 = Apple TV
 
 ##Using Detour
