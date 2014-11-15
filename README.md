@@ -3,7 +3,7 @@
 Detour
 ======
 
-Easily route devices on your LAN through different VPNs and Interfaces on your EdgeMAX router.
+Easily route devices on your LAN through different VPNs and Interfaces on your [EdgeMAX](http://www.ubnt.com/edgemax/edgerouter-lite/) router.
 
 Detour was created so I could easily switch some of my media devices to the US versions of Netflix and Amazon Prime (I live in Canada).  A friend uses it to route his AppleTV through Canada, USA, or Europe so he can bypass the geographic restrictions of NHL GameCenter.  It can also be used to selectively route different devices through a different WAN connection or VPN.
 
@@ -29,7 +29,7 @@ Create the VPN Client.  Here we're using pptpc0 as the interface name.
 	set require-mppe
 	exit
 
-Enable NAT masquerade for the interface.  Here we are using rule number 5004.  You can use the next rule number available, as long as it's greater than 5000.
+Enable NAT masquerade for the interface.  Here we are using rule number 5004.  You can use the next rule number available on your system, as long as it's greater than 5000.
 
 	edit service nat rule 5004
 	set description "Masquerade for pptpc0"
@@ -74,11 +74,11 @@ You only need to do this once.
 	sudo ./install.sh
 	
 ####Configuring Detour
-There are two configuration files for Detour.  Enter your address group names into the group_list.conf file...
+There are two configuration files for Detour.  Enter your address group names into the group_list.conf file.  In our example above that would be *vpn_usa*.
 
 	vi group_list.conf
 
-Enter the IP addresses and device names for the device's you'd like to use with Detour.
+Enter the IP addresses and device names for the device's you'd like to use with Detour.  These IP addresses should be statically assigned to each device.
 
 	vi ip_list.conf
 
