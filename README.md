@@ -3,22 +3,16 @@ Detour
 
 Easily route devices on your LAN through different VPNs and Interfaces on your EdgeMAX router.
 
-##Description
 Detour was created so I could easily switch some of my media devices to the US versions of Netflix and Amazon Prime (I live in Canada).  A friend uses it to route his AppleTV through Canada, USA, or Europe so he can bypass the geographic restrictions of NHL GameCenter.  It can also be used to selectively route different devices through a different WAN connection or VPN.
 
 ##How It Works
 Detour is a PHP script that allows you to easily manage which route to the internet a particular device on your network will take.  It does this by adding the IP addresses of these devices to an address group.  You then create firewall rules to route the members of these groups through the different interfaces.
 
 ##Installation and Setup
-There are two parts.  The first part is to add the necessary interface and firewall rules to route the IPs of an address group through a particular interface.  Once that works you can install Detour.
+First you need to create the interface to route the data through.  If this is a VPN you need to create the VPN client.  If this is just another WAN port, you probably don't need to do anything.  Next you have to setup a routing table and firewall rule to route data through that interface based on an address group.  Lastly, add the modify firewall to your LAN interface.
 
-###Setting up a PPTP VPN Connection and Routing
-
-SSH into the EdgeMAX and enter configuration mode...
-
-<code>$ configure</code>
-
-Add a PPTP client ...
+####Adding a PPTP VPN Client Interface
+Create the VPN Client.  Here we're using pptpc0 as the interface name.
 
 	edit interfaces pptp-client pptpc0
 	set server-ip **VPN-SERVER-IP.COM**
@@ -29,59 +23,48 @@ Add a PPTP client ...
 	set require-mppe
 	exit
 
-		pptp-client pptpc0 {
-			default-route none
-			description "US East VPN"
-			mtu 1500
-			name-server auto
-			password ****
-			require-mppe
-			server-ip us-east.privateinternetaccess.com
-			user-id ****
-		}
+Enable NAT masquerade for the interface.  Here we are using rule number 5004.  You can use the next rule number available, as long as it's greater than 5000.
 
-set protocols static table 1 interface-route 0.0.0.0/0 next-hop-interface pptpc0
+	edit service nat rule 5004
+	set description "Masquerade for pptpc0"
+	set outbound-interface pptpc0
+	set type Masquerade
+	exit
 
-set firewall group address-group vpn_diddles
+####Creating a Routing Table for the New Interface
 
-edit firewall modify detour rule 10
-set description "Detour route to US VPN pptpc0"
-set source group address-group vpn_diddles
-set modify table 1
-exit
+	set protocols static table 1 interface-route 0.0.0.0/0 next-hop-interface pptpc0
 
+####Creating the Firewall Rules
+First we need to create the address group.
+	
+	set firewall group address-group vpn_diddles
 
-edit service nat rule 5004
-set description "Masquerade for pptpc0"
-set outbound-interface pptpc0
-set type Masquerade
-exit
+Next we create the firewall modify rule to route the data through the table above if the source IP address is in the address group.
 
+	edit firewall modify detour rule 10
+	set description "Detour route to US VPN pptpc0"
+	set source group address-group vpn_diddles
+	set modify table 1
+	exit
 
-rule 5003 {
-	 description "masquerade for pptpc0"
-	 log disable
-	 outbound-interface pptpc0
-	 type masquerade
-}
-
-
+####Add the Firewall Modify rule to your LAN Interface
 
 set interfaces ethernet eth0 firewall in modify detour
+
+####Commit and Save
 
 commit
 save
 
-###Installing Detour
+##Installing Detour
 
-SSH in to your EdgeMAX router and run the following commands ...
-
-cd /config
-curl -Lk https://github.com/TravisCook/Detour/archive/master.tar.gz | tar xz
-mv Detour-master detour
-cd detour
-sudo ./install.sh
-vi group_list.conf
-vi ip_list.conf
+	cd /config
+	curl -Lk https://github.com/TravisCook/Detour/archive/master.tar.gz | tar xz
+	mv Detour-master detour
+	cd detour
+	sudo ./install.sh
+	vi group_list.conf
+	vi ip_list.conf
 
 
