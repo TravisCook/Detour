@@ -18,7 +18,7 @@ Create the VPN Client.  Here we're using pptpc0 as the interface name.
 	set server-ip **VPN-SERVER-IP.COM**
 	set user-id **USERNAME**
 	set password **PASSWORD**
-	set description "VPN Description"
+	set description "USA VPN"
 	set default-route none
 	set require-mppe
 	exit
@@ -32,30 +32,32 @@ Enable NAT masquerade for the interface.  Here we are using rule number 5004.  Y
 	exit
 
 ####Creating a Routing Table for the New Interface
+If you already have a table 1 use the next available table number.
 
 	set protocols static table 1 interface-route 0.0.0.0/0 next-hop-interface pptpc0
 
 ####Creating the Firewall Rules
 First we need to create the address group.
 	
-	set firewall group address-group vpn_diddles
+	set firewall group address-group vpn_usa
 
-Next we create the firewall modify rule to route the data through the table above if the source IP address is in the address group.
+Next we create the firewall modify rule to route the data through the table above if the source IP address is in the address group.  
 
-	edit firewall modify detour rule 10
+	edit firewall modify detour rule 10 <- Increment this number for additional interfaces
 	set description "Detour route to US VPN pptpc0"
-	set source group address-group vpn_diddles
-	set modify table 1
+	set source group address-group vpn_usa
+	set modify table 1  <- Use the table number you used above
 	exit
 
 ####Add the Firewall Modify rule to your LAN Interface
+You only need to do this once.
 
-set interfaces ethernet eth0 firewall in modify detour
+	set interfaces ethernet eth0 firewall in modify detour
 
 ####Commit and Save
 
-commit
-save
+	commit
+	save
 
 ##Installing Detour
 
@@ -64,7 +66,14 @@ save
 	mv Detour-master detour
 	cd detour
 	sudo ./install.sh
+	
+####Configuring Detour
+There are two configuration files for Detour.  Enter your address group names into the group_list.conf file...
+
 	vi group_list.conf
+
+Enter the IP addresses and device names for the device's you'd like to use with Detour.
+
 	vi ip_list.conf
 
 
