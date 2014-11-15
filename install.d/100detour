@@ -1,2 +1,0 @@
-www-data ALL=(ALL) NOPASSWD: /config/detour/get-group-members.sh
-www-data ALL=(ALL) NOPASSWD: /config/detour/set-group-members.sh
