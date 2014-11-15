@@ -1,7 +1,11 @@
+![Detour Icon](../images/icon.png?raw=true)
+
 Detour
 ======
 
 Easily route devices on your LAN through different VPNs and Interfaces on your EdgeMAX router.
+
+![Detour Screenshot](../images/screenshot.png?raw=true)
 
 Detour was created so I could easily switch some of my media devices to the US versions of Netflix and Amazon Prime (I live in Canada).  A friend uses it to route his AppleTV through Canada, USA, or Europe so he can bypass the geographic restrictions of NHL GameCenter.  It can also be used to selectively route different devices through a different WAN connection or VPN.
 
