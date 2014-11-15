@@ -43,7 +43,7 @@ Enable NAT masquerade for the interface.  Here we are using rule number 5004.  Y
 	edit service nat rule 5004
 	set description "Masquerade for pptpc0"
 	set outbound-interface pptpc0
-	set type Masquerade
+	set type masquerade
 	exit
 
 ####Creating a Routing Table for the New Interface
