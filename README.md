@@ -83,4 +83,5 @@ Enter the IP addresses and device names for the device's you'd like to use with 
 
 	vi ip_list.conf
 
-
+##Using Detour
+Connect to Detour at http://ROUTER_IP/detour
