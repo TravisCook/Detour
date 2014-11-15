@@ -75,13 +75,31 @@ You only need to do this once.  Here were using *eth0* as the LAN interface.  Re
 	sudo ./install.sh
 	
 ####Configuring Detour
-There are two configuration files for Detour.  Enter your address group names into the group_list.conf file.  In our example above that would be *vpn_usa*.
+There are two configuration files you need to edit before you can use Detour.
+
+#####group_list.conf
+Enter your address group names and descriptions into the group_list.conf file.  In our example above the address group name is *vpn_usa*.
 
 	vi group_list.conf
 
-Enter the IP addresses and device names for the device's you'd like to use with Detour.  These IP addresses should be statically assigned to each device.
+Add one address group per line in the format *address_group_name = Description*.
+
+An example entry:
+vpn_usa = USA VPN
+
+#####ip_list.conf
+Enter the IP addresses and device names for the device's you'd like to use with Detour into the ip_list.conf file.  These IP addresses should be statically assigned to each device.
 
 	vi ip_list.conf
 
+Add one IP address per line in the format *IP_address = Device Description*.
+
+An example entry:
+192.168.1.75 = Apple TV
+
 ##Using Detour
 Connect to Detour at http://ROUTER_IP/detour
+
+If you're using an iOS device, add Detour to your home screen for quick access.
+
+![Add To Home Screen](../images/add_to_home.png?raw=true)
