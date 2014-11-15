@@ -16,7 +16,7 @@ Below is a screenshot of the Web Interface once it's been added to my home scree
 Detour is a PHP script that allows you to easily manage which route to the internet a particular device on your network will take.  It does this by adding the IP addresses of these devices to an address group.  You then create firewall rules to route the members of these groups through the different interfaces.
 
 ##Installation and Setup
-First you need to create the interface to route the data through.  If this is a VPN you need to create the VPN client.  If this is just another WAN port, you probably don't need to do anything.  Next you have to setup a routing table and firewall rule to route data through that interface based on an address group.  Lastly, add the modify firewall to your LAN interface.
+First you need to create the interface to route the data through.  If this is a VPN you need to create the VPN client interface.  Next you have to setup a routing table and firewall rule to route data through the interface based on an address group.  Lastly, add the modify firewall to your LAN interface.
 
 ####Adding a PPTP VPN Client Interface
 Create the VPN Client.  Here we're using *pptpc0* as the interface name.
