@@ -9,6 +9,7 @@ Detour was created so I could easily switch some of my media devices to the US v
 
 ###Screenshot
 Below is a screenshot of the Web Interface once it's been added to my home screen and launched as an app.
+
 ![Detour Screenshot](../images/screenshot.png?raw=true)
 
 ##How It Works
