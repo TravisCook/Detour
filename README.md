@@ -20,14 +20,14 @@ SSH into the EdgeMAX and enter configuration mode...
 
 Add a PPTP client ...
 
->	edit interfaces pptp-client pptpc0
->	set server-ip **VPN-SERVER-IP.COM**
->	set user-id **USERNAME**
->	set password **PASSWORD**
->	set description "VPN Description"
->	set default-route none
->	set require-mppe
->	exit
+	edit interfaces pptp-client pptpc0
+	set server-ip **VPN-SERVER-IP.COM**
+	set user-id **USERNAME**
+	set password **PASSWORD**
+	set description "VPN Description"
+	set default-route none
+	set require-mppe
+	exit
 
 		pptp-client pptpc0 {
 			default-route none
