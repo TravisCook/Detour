@@ -21,6 +21,7 @@ First you need to create the interface to route the data through.  If this is a 
 ####Adding a PPTP VPN Client Interface
 Create the VPN Client.  Here we're using *pptpc0* as the interface name.
 
+	configure
 	edit interfaces pptp-client pptpc0
 	set server-ip **VPN-SERVER-IP.COM**
 	set user-id **USERNAME**
@@ -30,8 +31,15 @@ Create the VPN Client.  Here we're using *pptpc0* as the interface name.
 	set require-mppe
 	exit
 
+If you want to see if the vpn is connected, run the commands below and check if pptpc0 has an IP address.
+	
+	commit
+	exit
+	show interfaces
+
 Enable NAT masquerade for the interface.  Here we are using rule number 5004.  You can use the next rule number available on your system, as long as it's greater than 5000.
 
+	configure
 	edit service nat rule 5004
 	set description "Masquerade for pptpc0"
 	set outbound-interface pptpc0
