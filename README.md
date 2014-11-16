@@ -67,7 +67,7 @@ Next we create the firewall modify rule to route the data through the table abov
 	exit
 
 ####Add the Firewall Modify rule to your LAN Interface
-You only need to do this once.  Here were using *eth0* as the LAN interface.  Replace that with your LANs interface or bridge name.
+You only need to do this once.  Here we're using *eth0* as the LAN interface.  Replace that with your LAN's interface or bridge name.
 
 	set interfaces ethernet eth0 firewall in modify detour
 
