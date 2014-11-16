@@ -23,13 +23,15 @@ Create the VPN Client.  Here we're using *pptpc0* as the interface name.
 
 	configure
 	edit interfaces pptp-client pptpc0
-	set server-ip **VPN-SERVER-IP.COM**
+	set server-ip us-east.privateinternetaccess.com
 	set user-id **USERNAME**
 	set password **PASSWORD**
 	set description "USA VPN"
 	set default-route none
 	set require-mppe
 	exit
+
+**NOTE:** In the above example I'm using Private Internet Access as my VPN provider.  If you are too, make sure you use the random username and password generated in your control panel, NOT your account username and password.
 
 If you want to see if the vpn is connected, run the commands below and check if pptpc0 has an IP address.
 	
