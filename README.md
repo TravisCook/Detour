@@ -110,7 +110,7 @@ Add one IP address per line in the format *IP_address = Device Description*.
 ####Re-Enabling Offloading
 When the EdgeMax encounters a *modify table* in the firewall it disables offloading.  Some users with fast internet connections were reporting very high CPU and slow network performance after using Detour.  See [this thread](http://community.ubnt.com/t5/EdgeMAX/Detour-An-EdgeMax-app-to-selectively-route-different-devices/m-p/1175162#M56400) for information.
 
-You can force the router to re-enable offloading by editing the /config/detour/set-group-members.sh script.  At the bottom are a few lines you can uncomment to re-enable offloading:
+You can force the router to re-enable offloading after Detour runs by editing the /config/detour/set-group-members.sh script.  At the bottom are a few lines you can uncomment to re-enable offloading:
 
 	# To enable IP forward, VLAN, or PPPoE offloading, uncomment the appropriate lines below
 	#sh -c "echo 1 > /proc/cavium/ipv4/fwd"
