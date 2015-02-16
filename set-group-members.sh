@@ -44,4 +44,9 @@ done
 $run commit
 $run end
 
+# To enable IP forward, VLAN, or PPPoE offloading, uncomment the appropriate lines below
+#sh -c "echo 1 > /proc/cavium/ipv4/fwd"
+#sh -c "echo 1 > /proc/cavium/ipv4/vlan"
+#sh -c "echo 1 > /proc/cavium/ipv4/pppoe"
+
 exit 0
