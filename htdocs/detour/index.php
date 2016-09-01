@@ -1,3 +1,8 @@
+<?php
+	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+	header("Cache-Control: post-check=0, pre-check=0", false);
+	header("Pragma: no-cache");
+?>
 <html>
 <head>
 	<title>Detour</title>
@@ -140,19 +145,20 @@
 	// Read our VPN list config file
 	$output = runCmd('cat /config/detour/group_list.conf | grep "^[^#;]" 2>&1');
 	$group_list = array();
-	foreach ($output as $value)
+	
+	foreach ($output as $val)
 	{
-		list($key,$value) = split('=', $value);
-		$group_list[trim($key)] = trim($value);	
+		list($key,$val) = explode("=", $val);
+		$group_list[trim($key)] = trim($val);
 	}
 
 	// Read our list of IPs eligable for VPN routing
 	$output = runCmd('cat /config/detour/ip_list.conf | grep "^[^#;]" 2>&1');
 	$ip_list = array();
-	foreach ($output as $value)
+	foreach ($output as $val)
 	{
-		list($key,$value) = split('=', $value);
-		$ip_list[trim($key)] = trim($value);	
+		list($key,$val) = explode("=", $val);
+		$ip_list[trim($key)] = trim($val);	
 	}
 
 	// Check if we have should be updating any VPN groups
@@ -198,7 +204,7 @@
 	$current_list = array();
 	foreach ($output as $value)
 	{
-		list($key,$value) = split('=', $value);
+		list($key,$value) = explode("=", $value);
 		$current_list[trim($key)] = trim($value) . " ";	
 	}
 
