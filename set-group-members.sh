@@ -44,6 +44,9 @@ done
 $run commit
 $run end
 
+# make sure permissions in active config directory are correct
+chgrp -R vyattacfg /opt/vyatta/config/active/
+
 # To enable IP forward, VLAN, or PPPoE offloading, uncomment the appropriate lines below
 #sh -c "echo 1 > /proc/cavium/ipv4/fwd"
 #sh -c "echo 1 > /proc/cavium/ipv4/vlan"
