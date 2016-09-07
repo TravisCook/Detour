@@ -33,6 +33,17 @@ Create the VPN Client.  Here we're using *pptpc0* as the interface name.
 
 **NOTE:** In the above example I'm using Private Internet Access as my VPN provider.  If you are too, make sure you use the random username and password generated in your control panel, NOT your account username and password.
 
+####Adding an OpenVPN Client Interface
+Create the VPN Client.  Here we're using *vtun0* as the interface name.
+
+	configure
+	set config-file /config/auth/expressvpn_washington_dc.ovpn
+	set description "ExpressVPN OpenVPN"
+	set mode client
+	exit
+
+**NOTE:** In the above example I'm using ExpressVPN as my VPN provider.  By default, their OpenVPN config overrides the default route so all traffic passes through the VPN.  I had to edit their .ovpn file, remove the "route-method exe" and "route-delay 2" lines, and replace them with a "route-noexec" line.
+
 If you want to see if the vpn is connected run the commands below.  You should see an IP address and S/L states of u/u for the pptpc0 interface.
 	
 	commit
