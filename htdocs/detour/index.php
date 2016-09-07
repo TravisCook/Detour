@@ -74,6 +74,7 @@
 	}
 	
 	.titlebox { }
+	.titlebox a { text-decoration: none; color:black; }
 	.titleit {color: #d8d8d8; }
 	.deviceName { font-size:18px; text-align:right;}
 	.vpnList { }
@@ -89,10 +90,15 @@
 <body>
 
 <div class="header">
-	<div class="title" onclick="location.reload();">
-		<span class="titlebox">DETOUR</span>
+	<div class="title">
+		<span class="titlebox">
+		<?php 
+		$actual_link = "http://$_SERVER[HTTP_HOST]/detour";
+		echo "<a href='$actual_link'>DETOUR</a>";
+		?>
+		</span>
 	</div>
-	<div class="version">1.0</div>
+	<div class="version">1.1</div>
 </div>
 <div id="status" class="status">
 <div id="spinner"><img src="img/spinner.gif"></div>
