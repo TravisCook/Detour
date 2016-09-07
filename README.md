@@ -83,6 +83,9 @@ You only need to do this once.  Here we're using *eth0* as the LAN interface.  R
 
 	set interfaces ethernet eth0 firewall in modify detour
 
+####DNS Forwarding
+If you have set your router to forward the DNS queries, those queries will still be sent through your default internet connection, not through the VPN. This was making Netflix think I was still using a proxy even though all my other traffic was being sent through the VPN.  You may need to disable DNS forwarding or set DNS manually on the device so queries go directly to the name servers and not to the router.
+
 ####Commit and Save
 
 	commit
