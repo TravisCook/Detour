@@ -37,6 +37,7 @@ Create the VPN Client.  Here we're using *pptpc0* as the interface name.
 Create the VPN Client.  Here we're using *vtun0* as the interface name.
 
 	configure
+	edit interfaces openvpn vtun0
 	set config-file /config/auth/expressvpn_washington_dc.ovpn
 	set description "ExpressVPN OpenVPN"
 	set mode client
